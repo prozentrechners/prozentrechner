@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prozentrechner — Prozente einfach online berechnen</title>
+<style>
+  body { font-family: system-ui, -apple-system, Arial, sans-serif; max-width: 560px; margin: 40px auto; padding: 0 16px; color: #1a1a2e; }
+  h1 { font-size: 1.6rem; }
+  label { display: block; margin: 14px 0 4px; font-weight: 600; }
+  input { width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+  button { margin-top: 18px; padding: 12px 20px; font-size: 1rem; background: #f97316; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+  #result { margin-top: 20px; padding: 14px; background: #f1f5f9; border-radius: 6px; font-size: 1.1rem; display: none; }
+  footer { margin-top: 32px; font-size: .9rem; color: #555; }
+</style>
+</head>
+<body>
+  <h1>Prozentrechner</h1>
+  <p>Berechne den Prozentwert: Wie viel sind p % von einem Grundwert?</p>
+
+  <label for="grundwert">Grundwert (G) in €</label>
+  <input type="number" id="grundwert" placeholder="z. B. 200" step="any">
+
+  <label for="prozentsatz">Prozentsatz (p) in %</label>
+  <input type="number" id="prozentsatz" placeholder="z. B. 15" step="any">
+
+  <button onclick="berechnen()">Berechnen</button>
+
+  <div id="result"></div>
+
+  <script>
+    function berechnen() {
+      var G = parseFloat(document.getElementById('grundwert').value);
+      var p = parseFloat(document.getElementById('prozentsatz').value);
+      var out = document.getElementById('result');
+      if (isNaN(G) || isNaN(p)) { out.style.display = 'block'; out.textContent = 'Bitte beide Werte eingeben.'; return; }
+      var W = G * p / 100;
+      out.style.display = 'block';
+      out.innerHTML = '<strong>Prozentwert W = ' + W.toLocaleString('de-DE') + ' €</strong><br>Rechenweg: ' + G + ' × ' + p + ' ÷ 100 = ' + W.toLocaleString('de-DE');
+    }
+  </script>
+
+  <footer>
+    Kostenloser Open-Source-Prozentrechner. Mehr Rechner (Rabatt, Mehrwertsteuer, prozentuale Veränderung) auf
+    <a href="https://www.prozentrechners.de/">prozentrechners.de</a>.
+  </footer>
+</body>
+</html>
